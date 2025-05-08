@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Coba ajaa</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fceabb, #f8b500);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            user-select: none;
+            overflow: hidden;
+        }
+
+        .container {
+            background: #fff3cc;
+            width: 100%;
+            max-width: 350px;
+            max-height: 500px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        h1 {
+            color: #d47b00;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 1px 1px 4px rgba(212, 123, 0, .6);
+        }
+
+        input[type="text"] {
+            padding: 14px 15px;
+            font-size: 1.1rem;
+            border: 2px solid #f8b500;
+            border-radius: 12px;
+            outline: none;
+            transition: border-color 0.3s ease;
+            box-shadow: inset 2px 2px 5px rgba(255, 215, 0, 0.3);
+            font-weight: 600;
+            color: #7a4f00;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"]:focus {
+            border-color: #d47b00;
+            box-shadow: 0 0 8px #d47b00;
+        }
+
+        button {
+            padding: 15px 20px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 14px;
+            background: #d47b00;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 6px 12px rgba(212, 123, 0, 0.7);
+            transition: background-color 0.25s ease;
+            user-select: none;
+            margin-top: 20px;
+            align-self: center;
+        }
+
+        button:disabled {
+            background: #f3c168;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        button:hover:not(:disabled) {
+            background: #b05c00;
+            box-shadow: 0 8px 20px rgba(176, 92, 0, 0.9);
+        }
+
+        #greeting {
+            font-size: 1.6rem;
+            color: #a35e00;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.9);
+            user-select: text;
+            min-height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease;
+            flex-wrap: wrap;
+        }
+
+        #page2,
+        #page3 {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+        }
+
+        #photoGallery {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        #photoGallery img {
+            max-width: 100px;
+            width: 30vw;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        #photoGallery img:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 360px) and (max-height: 600px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+                margin-bottom: 20px;
+            }
+
+            input[type="text"] {
+                font-size: 1rem;
+                padding: 12px;
+                margin-bottom: 25px;
+            }
+
+            button {
+                font-size: 1rem;
+                padding: 12px 0;
+                max-width: 100%;
+            }
+
+            #greeting {
+                font-size: 1.4rem;
+                min-height: 4rem;
+            }
+
+            #photoGallery {
+                gap: 10px;
+            }
+
+            #photoGallery img {
+                max-width: 80px;
+                width: 25vw;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container" role="main">
+
+        <section id="page1" aria-label="Input Nama Ulang Tahun">
+            <h1>Nama Kamu</h1>
+            <input type="text" id="nameInput" placeholder="Isi dengan jujur ya.." autocomplete="off"
+                aria-label="Masukkan nama" spellcheck="false" />
+            <button id="okButton" disabled>Oke</button>
+        </section>
+
+        <section id="page2" aria-label="Halaman Ucapan Selamat">
+            <h1 id="greeting" tabindex="0"></h1>
+            <button id="photoBtn" style="display:none;">Lihat Foto</button>
+        </section>
+
+        <section id="page3" aria-label="Halaman Galeri Foto">
+            <h1>Foto Kamu</h1>
+            <div id="photoGallery" aria-live="polite" aria-label="Galeri Foto">
+                <img src="img_1.jpeg" alt="Foto 1" />
+                <img src="img_2.jpeg" alt="Foto 2" />
+                <img src="img_3.jpeg" alt="Foto 3" />
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        const nameInput = document.getElementById('nameInput');
+        const okButton = document.getElementById('okButton');
+        const page1 = document.getElementById('page1');
+        const page2 = document.getElementById('page2');
+        const page3 = document.getElementById('page3');
+        const greeting = document.getElementById('greeting');
+        const photoBtn = document.getElementById('photoBtn');
+
+        let timers = [];
+
+        function clearAllTimers() {
+            timers.forEach(t => clearTimeout(t));
+            timers = [];
+        }
+
+        nameInput.addEventListener('input', () => {
+            okButton.disabled = nameInput.value.trim().length === 0;
+        });
+
+        okButton.addEventListener('click', () => {
+            const name = nameInput.value.trim();
+            if (name.length === 0) return;
+
+            clearAllTimers();
+            photoBtn.style.display = 'none';
+
+            page1.style.display = 'none';
+            page3.style.display = 'none';
+            page2.style.display = 'flex';
+
+            greeting.style.opacity = 0;
+
+            greeting.textContent = `Selamat ulang tahun, ${name}!`;
+            setTimeout(() => { greeting.style.opacity = 1; }, 50);
+
+            timers.push(setTimeout(() => {
+                greeting.style.opacity = 0;
+                setTimeout(() => {
+                    greeting.textContent = 'Semoga panjang umur yaaa..';
+                    greeting.style.opacity = 1;
+                }, 500);
+            }, 4000));
+
+            timers.push(setTimeout(() => {
+                greeting.style.opacity = 0;
+                setTimeout(() => {
+                    greeting.textContent = 'Terima kasih sudah menjadi paman yang paling membanggakan';
+                    greeting.style.opacity = 1;
+                }, 500);
+            }, 8000));
+
+            timers.push(setTimeout(() => {
+                greeting.style.opacity = 0;
+                setTimeout(() => {
+                    greeting.textContent = 'Terima kasih';
+                    greeting.style.opacity = 1;
+                    photoBtn.style.display = 'block';
+                    photoBtn.focus();
+                }, 500);
+            }, 12000));
+
+            greeting.focus();
+        });
+
+        photoBtn.addEventListener('click', () => {
+            page2.style.display = 'none';
+            page3.style.display = 'flex';
+            const galleryHeading = page3.querySelector('h1');
+            galleryHeading.focus();
+        });
+
+        window.addEventListener('load', () => {
+            nameInput.focus();
+        });
+    </script>
+</body>
+
+</html>
